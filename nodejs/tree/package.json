@@ -1,0 +1,12 @@
+{
+  "name": "tree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tree.js",
+  "scripts": {
+    "tree": "node tree.mjs"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC"
+}
