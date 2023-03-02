@@ -1,0 +1,13 @@
+{
+  "name": "sortfile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sort-file": "node --max-old-space-size=50 index.js",
+    "generate-large-file": "node utils/generateFile 1e7 ../tests/data.bin",
+    "generate-file": "node utils/generateFile"
+  },
+  "author": "",
+  "license": "ISC"
+}
