@@ -1,0 +1,61 @@
+# 1. Get all data
+{
+  products {
+  	id,
+    name,
+    price,
+    description,
+    category
+	}
+  customers {
+    id
+    name
+  }
+  orders {
+    id,
+    date,
+    customerId,
+    productIds
+  }
+}
+
+# 2. Products mutations
+mutation {
+  addProduct(name: "DOOM Eternal", price: 100.0, category: VIDEO_GAMES) {
+    id
+  }
+}
+
+mutation {
+  deleteProduct(id: 2)
+}
+
+# 3. Customers mutations
+mutation {
+  addCustomer(name: "Vasya Pupkin") {
+    id,
+    name
+  }
+}
+
+mutation {
+  editCustomer(id: 40, name: "Ivan Ivanov") {
+    id,
+    name
+  }
+}
+
+mutation {
+  deleteCustomer(id: 72)
+}
+
+# 4. Order mutations
+mutation {
+  addOrder(date: 1677785687784, customerId: 29, productIds: [97]) {
+    id
+  }
+}
+
+mutation {
+  deleteOrder(id: 71)
+}
