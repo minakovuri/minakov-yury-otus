@@ -1,0 +1,11 @@
+.shape {
+    fill: yellow;
+    stroke: red;
+    stroke-width: 2;
+}
+
+.rect-border {
+    stroke: dodgerblue;
+    stroke-width: 1;
+    stroke-dasharray: 10;
+}

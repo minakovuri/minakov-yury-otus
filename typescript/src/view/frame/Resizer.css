@@ -1,0 +1,23 @@
+.resize-handler-wrapper {
+    overflow: visible;
+}
+
+.resize-handler {
+    fill: dodgerblue;
+}
+
+.left-diagonal {
+    cursor: nwse-resize;
+}
+
+.right-diagonal {
+    cursor: nesw-resize;
+}
+
+.vertical {
+    cursor: ns-resize;
+}
+
+.horizontal {
+    cursor: ew-resize;
+}
