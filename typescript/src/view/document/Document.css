@@ -1,0 +1,18 @@
+.document {
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5)
+}
+
+.shapes-layer {
+    width: 100%;
+    height: 100%;
+}
+
+.frames-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
