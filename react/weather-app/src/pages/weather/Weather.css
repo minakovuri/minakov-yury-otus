@@ -1,0 +1,8 @@
+.weather {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 400px;
+    background-color: gainsboro;
+    height: 100vh;
+}
