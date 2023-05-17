@@ -5,7 +5,7 @@ import './ForecastWidget.css'
 const WEEK_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 interface DailyWeatherProps {
-    date: Date,
+    date: number,
     weather: string,
     feelsLike: number,
     temperature: number,
@@ -23,7 +23,7 @@ function DailyWeather(props: DailyWeatherProps) {
         maxTemperature,
     } = props
 
-    const weekDay = WEEK_DAYS[date.getDay()]
+    const weekDay = WEEK_DAYS[new Date(date).getDay()]
 
     return (
         <div className='daily-weather'>
@@ -41,7 +41,7 @@ function DailyWeather(props: DailyWeatherProps) {
 
 interface ForecastWidgetProps {
     forecast: Array<{
-        date: Date,
+        date: number,
         weather: string,
         feelsLike: number,
         temperature: number,
@@ -51,10 +51,6 @@ interface ForecastWidgetProps {
 }
 
 export default function ForecastWidget(props: ForecastWidgetProps) {
-    // const forecastDays = useMemo(() => {
-    //     const currentDay = new Date().getDay();
-    //     return WEEK_DAYS.slice(currentDay, WEEK_DAYS.length).concat(WEEK_DAYS.slice(0, currentDay))
-    // }, [])
     const {forecast} = props
 
     return (
@@ -62,7 +58,7 @@ export default function ForecastWidget(props: ForecastWidgetProps) {
             <div className='header'>Forecast:</div>
             <div className='forecast-list'>
                 {forecast.map(item => <DailyWeather
-                    key={item.date.getDate()}
+                    key={item.date}
                     date={item.date}
                     weather={item.weather}
                     feelsLike={item.feelsLike}

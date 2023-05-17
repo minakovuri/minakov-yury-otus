@@ -1,18 +1,19 @@
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AsyncPaginate } from 'react-select-async-paginate'
-import { CitiesApi } from '../api/citiesApi'
+import { loadCities } from '../actions/loadCities'
 
 import './SearchField.css'
 
 const SEARCH_DEBOUNCE = 1000
 
 async function loadOptions(value: string) {
-  const apiData = await CitiesApi.list(value)
+  const data = await loadCities(value)
+
   return {
-    options: apiData.map(item => ({
-      value: item.name,
-      label: `${item.name}, ${item.country}`,
+    options: data.map(item => ({
+      value: item.city,
+      label: `${item.city}, ${item.country}`,
     }))
   }
 }

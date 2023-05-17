@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import SearchField from '../../components/SearchField'
 import WeatherWidget from '../../components/WeatherWidget'
-import {loadForecast, loadWeather, WeatherData, ForecastData} from '../../actions/loadWeather'
+import {loadWeather, WeatherData} from '../../actions/loadWeather'
 import ForecastWidget from '../../components/ForecastWidget'
 
 import './Weather.css'
@@ -11,36 +11,30 @@ export default function Weather() {
     const {cityName} = useParams()
 
     const [city, setCity] = useState<string>('')
-    const [weather, setWeather] = useState<WeatherData|null>(null)
-    const [forecast, setForecast] = useState<ForecastData|null>(null)
+    const [data, setData] = useState<WeatherData|null>(null)
 
     useEffect(() => {
         const verifiedCityName = cityName || ''
 
-        Promise.all([
-            loadWeather(verifiedCityName),
-            loadForecast(verifiedCityName),
-        ]).then(data => {
-            setWeather(data[0])
-            setForecast(data[1])
-            setCity(verifiedCityName)
-        })
+        loadWeather(verifiedCityName)
+            .then(data => {
+                setData(data)
+                setCity(verifiedCityName)
+            })
     }, [cityName])
 
     return (
         <div className='weather'>
             <SearchField></SearchField>
-            {weather && <WeatherWidget
+            {data && <WeatherWidget
                 city={city}
-                feelsLike={weather.feelsLike}
-                temperature={weather.temperature}
-                minTemperature={weather.minTemperature}
-                maxTemperature={weather.maxTemperature}
-                weather={weather.weather}
+                feelsLike={data.weather.feelsLike}
+                temperature={data.weather.temperature}
+                minTemperature={data.weather.minTemperature}
+                maxTemperature={data.weather.maxTemperature}
+                weather={data.weather.weather}
             ></WeatherWidget>}
-            {forecast && <ForecastWidget
-                forecast={forecast}
-            ></ForecastWidget>}
+            {data && <ForecastWidget forecast={data.forecast}></ForecastWidget>}
         </div>
     )
 }
