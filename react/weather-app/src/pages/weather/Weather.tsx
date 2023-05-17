@@ -1,27 +1,31 @@
 import React, { useEffect, useState} from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import SearchField from '../../components/SearchField'
 import WeatherWidget from '../../components/WeatherWidget'
-import {loadWeather, WeatherData} from '../../actions/loadWeather'
+import {loadForecast, loadWeather, WeatherData, ForecastData} from '../../actions/loadWeather'
+import ForecastWidget from '../../components/ForecastWidget'
 
 import './Weather.css'
 
 export default function Weather() {
-    const [searchParams] = useSearchParams()
+    const {cityName} = useParams()
+
     const [city, setCity] = useState<string>('')
     const [weather, setWeather] = useState<WeatherData|null>(null)
+    const [forecast, setForecast] = useState<ForecastData|null>(null)
 
     useEffect(() => {
-        const city = searchParams.get('city') || ''
-        const latitude = searchParams.get('lat') || ''
-        const longitude = searchParams.get('lon') || ''
+        const verifiedCityName = cityName || ''
 
-        loadWeather(latitude, longitude)
-            .then(data => {
-                setWeather(data)
-                setCity(city)
-            })
-    }, [searchParams])
+        Promise.all([
+            loadWeather(verifiedCityName),
+            loadForecast(verifiedCityName),
+        ]).then(data => {
+            setWeather(data[0])
+            setForecast(data[1])
+            setCity(verifiedCityName)
+        })
+    }, [cityName])
 
     return (
         <div className='weather'>
@@ -34,6 +38,9 @@ export default function Weather() {
                 maxTemperature={weather.maxTemperature}
                 weather={weather.weather}
             ></WeatherWidget>}
+            {forecast && <ForecastWidget
+                forecast={forecast}
+            ></ForecastWidget>}
         </div>
     )
 }

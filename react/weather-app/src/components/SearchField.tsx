@@ -11,7 +11,7 @@ async function loadOptions(value: string) {
   const apiData = await CitiesApi.list(value)
   return {
     options: apiData.map(item => ({
-      value: `${item.name}, ${item.latitude}, ${item.longitude}`,
+      value: item.name,
       label: `${item.name}, ${item.country}`,
     }))
   }
@@ -27,9 +27,8 @@ export default function SearchField() {
       }
 
       const {value} = data
-      const [city, latitude, longitude] = value.split(',')
 
-      navigate(`/weather?city=${city}&lat=${latitude}&lon=${longitude}`)
+      navigate(`/weather/${value}`)
     },
     [navigate],
   )

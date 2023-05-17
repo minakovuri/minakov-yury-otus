@@ -7,16 +7,16 @@
     color: white;
 }
 
-.header {
+.weather-widget .header {
     font-size: 20px;
     margin-top: 5px;
 }
 
-.place {
+.weather-widget .place {
     font-size: 20px;
     font-weight: bold;
 }
 
-.current-weather {
+.weather-widget .current-weather {
     margin-left: 10px;
 }

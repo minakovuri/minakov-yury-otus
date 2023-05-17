@@ -30,7 +30,7 @@ export default function WeatherWidget(props: WeatherWidgetProps) {
                 <div>Temperature: {Math.floor(temperature)} °C</div>
                 <div>Feels like: {Math.floor(feelsLike)} °C</div>
                 <div>Max temperature: {Math.floor(maxTemperature)} °C</div>
-                <div>Min temperature: {Math.floor(minTemperature)} °C</div>
+                <div>Min temperature: {Math.floor(minTemperature)}°C</div>
             </div>
         </div>
     )
