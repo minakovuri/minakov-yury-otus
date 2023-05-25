@@ -17,7 +17,7 @@ export class WeatherApi {
     private static baseUrl = 'https://api.openweathermap.org/data/2.5'
 
     private static options = {
-        apiKey: '17222db223dd9d8145433cdcdf51e27e',
+        apiKey: '', // вставить сюда ключ
     }
 
     static async weather(city: string) {

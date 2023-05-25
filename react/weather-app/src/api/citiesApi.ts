@@ -11,7 +11,7 @@ export class CitiesApi {
     private static options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '686cd21c5bmsh8aded534919ab28p1a1fb1jsn3f33870868ac',
+            'X-RapidAPI-Key': '', // вставить сюда ключ
             'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
         }
     }
