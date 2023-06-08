@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GoComponent } from './pages/go/go/go.component';
-import { RecentlyAddedComponent } from './pages/recently-added/recently-added/recently-added.component';
-import { SettingsComponent } from './pages/settings/settings/settings.component';
+import { GoComponent } from './pages/go/go.component';
+import { RecentlyAddedComponent } from './pages/recently-added/recently-added.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,8 @@ import { SettingsComponent } from './pages/settings/settings/settings.component'
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

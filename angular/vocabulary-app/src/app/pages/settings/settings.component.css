@@ -1,0 +1,14 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.settings-item {
+    display: flex;
+    gap: 10px;
+}
+
+.submit-button {
+    width: 200px;
+}

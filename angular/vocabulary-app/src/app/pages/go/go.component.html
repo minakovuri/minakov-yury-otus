@@ -1,0 +1,16 @@
+<h1>Go</h1>
+<div>Time left: {{timeLeft.min}} min, {{timeLeft.sec}} sec</div>
+<div>Score: {{score}}</div>
+<button class="start-button" *ngIf="startAvailable" (click)="start()">Start</button>
+<form class="task-form" (ngSubmit)="answer()">
+    <h2>Translate word</h2>
+    <div class="task-form-item">
+        <input id="word" readonly [formControl]="wordToTranslate">
+        <label for="word">Word</label>
+    </div>
+    <div class="task-form-item">
+        <input id="answer" [formControl]="answerValue">
+        <label for="answer">Type in answer</label>
+    </div>
+    <button class="submit-button" type="submit" [disabled]="!answerAvailable">Answer</button>
+</form>
