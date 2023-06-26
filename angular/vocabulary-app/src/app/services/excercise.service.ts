@@ -4,19 +4,22 @@ import { VocabularyService } from './vocabulary.service';
 import { BehaviorSubject } from 'rxjs';
 import { TranslationItem, Vocabulary } from '../model/vocabulary';
 
+const initialTask: TranslationItem = {
+  word: '',
+  translation: '',
+  fromLng: '',
+  toLng: '',
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ExcerciseService {
   status = new BehaviorSubject<'not-started'|'playing'|'ended'>('not-started')
-  timeLeft = new BehaviorSubject<number>(90)
+  timeLeft = new BehaviorSubject<number>(0)
+  tasksLeft = new BehaviorSubject<number>(0)
   score = new BehaviorSubject<number>(0)
-  task = new BehaviorSubject<TranslationItem>({
-    word: '',
-    translation: '',
-    fromLng: '',
-    toLng: '',
-  })
+  task = new BehaviorSubject<TranslationItem>(initialTask)
 
   private tasks: Vocabulary = []
   private taskIndex: number = -1
@@ -25,7 +28,10 @@ export class ExcerciseService {
     private settings: SettingsService,
     private vocabulary: VocabularyService,
   ) {
-    settings.subscribe(({timeLeft}) => this.timeLeft.next(timeLeft))
+    settings.subscribe(({timeLeft, wordsCount}) => {
+      this.timeLeft.next(timeLeft)
+      this.tasksLeft.next(wordsCount)
+    })
   }
 
   private startCountdown() {
@@ -76,7 +82,15 @@ export class ExcerciseService {
   }
 
   private updateTask() {
+    if (this.status.value !== 'playing') {
+      return
+    }
+
+    const tasksCount = this.settings.getSettings().wordsCount
+
     this.taskIndex++
+
+    this.tasksLeft.next(tasksCount - this.taskIndex)
 
     const task = this.tasks[this.taskIndex]
     
@@ -105,12 +119,12 @@ export class ExcerciseService {
   public start() {
     this.score.next(0)
 
+    this.status.next('playing')
+
     this.generateTasks()
     this.updateTask()
 
     this.startCountdown()
-
-    this.status.next('playing')
   }
 
   public answer(word: string, translation: string) {
@@ -121,5 +135,19 @@ export class ExcerciseService {
     this.checkAnswer(word, translation)
 
     this.updateTask()
+  }
+
+  public reset() {
+    const {timeLeft, wordsCount} = this.settings.getSettings()
+
+    this.timeLeft.next(timeLeft)
+    this.tasksLeft.next(wordsCount)
+
+    this.status.next('not-started')
+    this.score.next(0)
+    this.task.next(initialTask)
+
+    this.taskIndex = -1
+    this.tasks = []
   }
 }

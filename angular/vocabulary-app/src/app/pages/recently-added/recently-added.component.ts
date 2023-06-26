@@ -11,7 +11,7 @@ import { VocabularyService } from 'src/app/services/vocabulary.service';
 export class RecentlyAddedComponent {
   vocabulary: Vocabulary = [];
 
-  newPhrase = new FormControl('');
+  translationWord = new FormControl('');
   fromLng = new FormControl('ru', {nonNullable: true});
   toLng = new FormControl('en', {nonNullable: true});
 
@@ -24,15 +24,20 @@ export class RecentlyAddedComponent {
   }
 
   translate() {
-    const newPhrase = this.newPhrase.value
+    const translationWord = this.translationWord.value
     const fromLng = this.fromLng.value
     const toLng = this.toLng.value
 
-    if (!newPhrase) {
-      alert('Cannot translate empty phrase')
+    if (!translationWord) {
+      alert('Cannot translate empty word')
+      return
+    }
+
+    if (this.vocabularyService.getItem(translationWord, fromLng, toLng)) {
+      alert('This word translated recently')
       return
     }
     
-    this.vocabularyService.translate(newPhrase, fromLng, toLng)
+    this.vocabularyService.translate(translationWord, fromLng, toLng)
   }
 }

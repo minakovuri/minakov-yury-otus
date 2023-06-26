@@ -20,15 +20,8 @@ export class VocabularyService {
     vocabularyStore.subscribe(vocabulary => this.changes.next(vocabulary))
   }
 
-  public translate(phrase: string, fromLng: string, toLng: string): void {
-    // need polyfill for firefox
-    //const segmenter = new Intl.Segmenter(fromLng, { granularity: 'word' })
-
-    const chunks = phrase.trim().split(/[ ,.!?:;]/)
-
-    for (const chunk of chunks) {
-      this.translation.translate(chunk, fromLng, toLng)
-    }
+  public translate(word: string, fromLng: string, toLng: string): void {
+    this.translation.translate(word, fromLng, toLng)
   }
 
   public subscribe(callback: (data: Vocabulary) => void) {
@@ -51,10 +44,5 @@ export class VocabularyService {
   public getItem(word: string, fromLng: string, toLng: string): TranslationItem|null {
     const vocabulary = this.get(fromLng, toLng)
     return vocabulary.find(item => item.word === word && item.fromLng === fromLng && item.toLng === toLng) || null
-  }
-
-  public getItemsCount(): number {
-    const vocabulary = this.vocabularyStore.getAll()
-    return vocabulary.length
   }
 }

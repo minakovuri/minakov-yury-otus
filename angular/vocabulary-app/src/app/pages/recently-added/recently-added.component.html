@@ -21,8 +21,8 @@
 <h2>Translate</h2>
 <form class="translate-form" (ngSubmit)="translate()">
     <div class="translate-form-item">
-        <input id="new-phrase" [formControl]="newPhrase"/>
-        <label for="new-phrase">Enter phrase to transtale</label>
+        <input id="translation-word" [formControl]="translationWord"/>
+        <label for="translation-word">Enter word to transtale</label>
     </div>
     <div class="translate-form-item">
         <select id="language-from" [formControl]="fromLng">
