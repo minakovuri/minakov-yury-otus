@@ -1,5 +1,4 @@
 import React, {useEffect, useRef} from "react"
-import 'highlight.js/styles/github.css';
 
 import './HighlightedCode.css'
 
@@ -21,6 +20,6 @@ export function HightightedCode(props: Props) {
     }, [highlightedCodeHtml])
 
     return (
-<pre><code ref={ref}></code></pre>
+<pre><code className="hljs" ref={ref}></code></pre>
     )
 }
