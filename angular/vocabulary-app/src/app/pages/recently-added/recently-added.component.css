@@ -1,0 +1,18 @@
+.table-cell {
+    text-align: left;
+}
+
+.translate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.translate-form-item {
+    display: flex;
+    gap: 10px;
+}
+
+.submit-button {
+    width: 200px;
+}

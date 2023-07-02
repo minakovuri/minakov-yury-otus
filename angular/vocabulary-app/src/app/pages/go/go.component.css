@@ -1,0 +1,15 @@
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-form-item {
+    display: flex;
+    gap: 5px;
+}
+
+.start-button,
+.submit-button {
+    width: 200px;
+}

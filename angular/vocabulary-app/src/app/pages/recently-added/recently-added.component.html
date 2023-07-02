@@ -1,0 +1,42 @@
+<h1>Recently added</h1>
+<table>
+    <colgroup>
+        <col span="1" style="width: 100px">
+        <col span="1" style="width: 100px">
+        <col span="1" style="width: 100px">
+     </colgroup>
+    <tr>
+        <th class="table-cell">From</th>
+        <th class="table-cell">Word</th>
+        <th class="table-cell">To</th>
+        <th class="table-cell">Translation</th>
+    </tr>
+    <tr *ngFor="let item of vocabulary">
+        <td class="table-cell">{{item.fromLng}}</td>
+        <td class="table-cell">{{item.word}}</td>
+        <td class="table-cell">{{item.toLng}}</td>
+        <td class="table-cell">{{item.translation}}</td>
+    </tr>
+</table>
+<h2>Translate</h2>
+<form class="translate-form" (ngSubmit)="translate()">
+    <div class="translate-form-item">
+        <input id="translation-word" [formControl]="translationWord"/>
+        <label for="translation-word">Enter word to transtale</label>
+    </div>
+    <div class="translate-form-item">
+        <select id="language-from" [formControl]="fromLng">
+            <option value="ru">ru</option>
+            <option value="en">en</option>
+        </select>
+        <label for="language-from">Select language from</label>
+    </div>
+    <div class="translate-form-item">
+        <select id="language-to" [formControl]="toLng">
+            <option value="en">en</option>
+            <option value="ru">ru</option>
+        </select>
+        <label for="language-to">Select language from</label>
+    </div>
+    <button class="submit-button" type="submit">Add</button>
+</form>

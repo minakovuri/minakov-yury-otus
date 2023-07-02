@@ -1,0 +1,1 @@
+export type SupportedLanguages = 'ru' | 'en'

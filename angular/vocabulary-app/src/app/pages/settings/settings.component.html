@@ -1,0 +1,30 @@
+<h1>Settings</h1>
+<form class="settings" (ngSubmit)="save()">
+    <div class="settings-item">
+        <select id="language-from" [formControl]="fromLng">
+            <option value="ru">ru</option>
+            <option value="en">en</option>
+        </select>
+        <label for="language-from">Select language from</label>
+    </div>
+
+    <div class="settings-item">
+        <select id="language-to" [formControl]="toLng">
+            <option value="ru">ru</option>
+            <option value="en">en</option>
+        </select>
+        <label for="language-to">Select language to</label>
+    </div>
+
+    <div class="settings-item">
+        <input id="words-count" type="number" [formControl]="wordsCount" min="1">
+        <label for="words-count">Select words count</label>
+    </div>
+
+    <div class="settings-item">
+        <input id="time" type="number" min="15" max="120" step="15" [formControl]="timeLeft">
+        <label for="time">Select time for exercise (sec)</label>
+    </div>
+
+    <button class="submit-button" type="submit">Save</button>
+</form>
